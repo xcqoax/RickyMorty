@@ -8,11 +8,14 @@ import Col from 'react-bootstrap/Col'
 import Spinner from 'react-bootstrap/Spinner'
 import Button from 'react-bootstrap/Button'
 
+function handleClick(personaje){
+  
+  console.log(personaje)
+ } 
+
 export default function CardCharacters(props) {
 
-  function handleClick(name){
-   console.log('hola '+name)
-  }
+ 
 
   const Personajes = gql`
         query{
@@ -34,27 +37,23 @@ export default function CardCharacters(props) {
         if (error) return  <p>Error</p>
        
          const resultado = data.characters.results;
-       
-       const listaPersonajes = resultado.map((personaje) =>
-       <div>
-         <Col>
-           <Card style={{ width: '18rem' }} className="mt-2" >
-             <Card.Img variant="top" src={personaje.image} />
-             <Card.Body>
-               <Card.Title className='text-center' onClick={handleClick}>{personaje.name}</Card.Title>
-               <Button onClick={handleClick(personaje.name)} variant="outline-primary" > Detalles </Button>
-             </Card.Body>
-           </Card>
-         </Col>  
-       </div>
-        // hacer tarjeta
-       )
-       
+              
          return(
            <div>
              <Container>
-               <Row md={3}>
-                 {listaPersonajes}
+               <Row >
+                {resultado.map(personaje =>(
+                  <Col md={4} xs={6}>
+                    <Card style={{ width: '18rem' }} className="mt-2" >
+                      <Card.Img variant="top" src={personaje.image} />
+                      <Card.Body>
+                        <Card.Title className='text-center'>{personaje.name}</Card.Title>
+                        <Button onClick={handleClick(personaje)} variant="outline-primary" > Detalles </Button>
+                      </Card.Body>  
+                    </Card>
+                 </Col> 
+                ))}
+                 
                </Row>
              </Container>
            </div>
