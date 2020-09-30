@@ -8,14 +8,25 @@ import Col from 'react-bootstrap/Col'
 import Spinner from 'react-bootstrap/Spinner'
 import Button from 'react-bootstrap/Button'
 
-function handleClick(personaje){
+
+
+let person
+
+function handleClick(e){  
+ let nombreChar = e.target.innerText
   
-  console.log(personaje)
+  let charInfo = person.find(char => {
+     return char.name === nombreChar
+     }) 
+
+console.log(charInfo)
+    
  } 
+
 
 export default function CardCharacters(props) {
 
- 
+
 
   const Personajes = gql`
         query{
@@ -37,7 +48,8 @@ export default function CardCharacters(props) {
         if (error) return  <p>Error</p>
        
          const resultado = data.characters.results;
-              
+           person = resultado;
+
          return(
            <div>
              <Container>
@@ -47,8 +59,8 @@ export default function CardCharacters(props) {
                     <Card style={{ width: '18rem' }} className="mt-2" >
                       <Card.Img variant="top" src={personaje.image} />
                       <Card.Body>
-                        <Card.Title className='text-center'>{personaje.name}</Card.Title>
-                        <Button onClick={handleClick(personaje)} variant="outline-primary" > Detalles </Button>
+                        <Card.Title className='text-center' id='nombre'>{personaje.name}</Card.Title>
+                        <Button onClick={handleClick} variant="outline-primary" > {personaje.name} </Button>
                       </Card.Body>  
                     </Card>
                  </Col> 
