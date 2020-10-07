@@ -26,7 +26,7 @@ export default function CardCharacters(props) {
 
   let person
   let infoModal ={}
-
+ 
   function handleClick(e){  
   let nombreChar = e.target.innerText
        person.find(char => {
@@ -44,6 +44,7 @@ export default function CardCharacters(props) {
           handleShow()
    };
 
+   
   const Personajes = gql`
         query{
           characters (filter:{name:"${props.name}"}){
@@ -58,10 +59,10 @@ export default function CardCharacters(props) {
         }
     `;
 
-    console.log(infoModal)
+
         const { loading, error, data } = useQuery(Personajes)
        
-        if (loading) return <Container><Spinner animation="border" variant="primary" className='text-center'/></Container>;
+        if (loading) return <Container><div className="row justify-content-center mt50"><Spinner animation="border" variant="primary" /></div></Container>;
         if (error) return  <p>Error</p>
        
         const resultado = data.characters.results;
@@ -76,7 +77,7 @@ export default function CardCharacters(props) {
                   <Col md={4} xs={6}>
                     <Card style={{ width: '18rem' }} className="mt-2" >
                       <Card.Img variant="top" src={personaje.image} />
-                      <Card.Body>
+                      <Card.Body className='btnInfo'>
                         <Button onClick={handleClick} variant="outline-primary" > {personaje.name} </Button>
                       </Card.Body>  
                     </Card>
@@ -89,12 +90,12 @@ export default function CardCharacters(props) {
                   <Modal.Header closeButton>
                     <Modal.Title>{datosPersonajes.nombre}</Modal.Title>
                   </Modal.Header>
-                  <Modal.Body>
+                  <Modal.Body className="informacionGeneralPersonaje">
                     <img src={datosPersonajes.imagen} />
-                    <ul>
-                      <li> Especie: {datosPersonajes.especies} </li>
-                      <li> Genero: {datosPersonajes.genero} </li>  
-                      <li> Tipo: {datosPersonajes.tipo} </li>
+                    <ul className="infoPersonaje">
+                      <li> <strong>Especie:</strong> {datosPersonajes.especies} </li>
+                      <li> <strong>Genero:</strong> {datosPersonajes.genero} </li>  
+                      <li> <strong>Tipo:</strong> {datosPersonajes.tipo} </li>
                     </ul>
                   </Modal.Body>
                   <Modal.Footer>
@@ -107,5 +108,6 @@ export default function CardCharacters(props) {
              </Container>
            </div>
          );
+        
        }
        

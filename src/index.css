@@ -11,3 +11,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.navPersonaje{
+  background: #41E0FD;
+  padding: 15px 10px;
+  text-align: center;
+  
+}
+
+.navPersonaje input{
+  width: 50%;
+  padding: 10px;
+  
+}
+
+.btnInfo{
+  text-align: center;
+  border: 1px solid #265180;
+  
+}
+
+img{
+  width: 100%;
+}
+
+.infoPersonaje li{
+  list-style: none;
+}
+
+.informacionGeneralPersonaje{
+  display: flex;
+flex-direction: column;
+justify-content: center;
+align-content: center;
+}
+
+.mt50{
+ 
+  margin-top:50px;
+}
