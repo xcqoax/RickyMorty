@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import CardCharacters from '../card/CardCharacters'
-import Form from 'react-bootstrap/Form'
-import InputGroup from 'react-bootstrap/InputGroup'
 
 
 class HomePage extends Component {
@@ -14,8 +12,7 @@ class HomePage extends Component {
 this.handleChange = this.handleChange.bind(this);
 }
 
-handleChange(e){
-    
+handleChange(e){  
     this.setState({
         inputName: e.target.value
     });
@@ -27,7 +24,7 @@ handleChange(e){
                 
                 <input type="text" placeholder="Escribe el personaje" value={this.state.inputName} onChange={this.handleChange}/>
                 
-                <CardCharacters name={this.state.inputName}/>
+                <CardCharacters name = {this.state.inputName}/>
 
             </div>
         );
@@ -36,4 +33,6 @@ handleChange(e){
 
 export default HomePage;
 
-///*<CardCharacters name={inputChar}/>*/
+
+
+
